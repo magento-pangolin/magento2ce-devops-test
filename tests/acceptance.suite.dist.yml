@@ -1,0 +1,30 @@
+# Codeception Test Suite Configuration
+#
+# Suite for acceptance tests.
+# Perform tests in browser using the WebDriver or PhpBrowser.
+# If you need both WebDriver and PHPBrowser tests - create a separate suite.
+
+class_name: AcceptanceTester
+namespace: Magento\AcceptanceTestFramework
+modules:
+    enabled:
+        - \Magento\AcceptanceTestFramework\Module\MagentoWebDriver
+        - \Magento\AcceptanceTestFramework\Helper\Acceptance
+        - \Magento\AcceptanceTestFramework\Helper\MagentoFakerData
+        - \Magento\AcceptanceTestFramework\Module\MagentoRestDriver:
+            url: "%MAGENTO_BASE_URL%/rest/default/V1/"
+            username: "%MAGENTO_ADMIN_USERNAME%"
+            password: "%MAGENTO_ADMIN_PASSWORD%"
+            depends: PhpBrowser
+            part: Json
+        - \Magento\AcceptanceTestFramework\Module\MagentoSequence
+        - Asserts
+    config:
+        \Magento\AcceptanceTestFramework\Module\MagentoWebDriver:
+            url: "%MAGENTO_BASE_URL%"
+            backend_name: admin
+            browser: chrome
+            window_size: maximize
+            username: "%MAGENTO_ADMIN_USERNAME%"
+            password: "%MAGENTO_ADMIN_PASSWORD%"
+            pageload_timeout: 30

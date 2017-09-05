@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Test XML Example -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/magento2-acceptance-test-framework/src/Magento/AcceptanceTestFramework/Test/etc/testSchema.xsd">
+    <cest name="LogIntoAdmin7_Cest">
+        <annotations>
+            <features value="Admin Login"/>
+            <stories value="Access Admin Login Page"/>
+            <group value="example"/>
+            <group value="login7"/>
+        </annotations>
+        <test name="logIntoAdmin7">
+            <annotations>
+                <title value="You should be able to log into the Magento Admin backend."/>
+                <description value="You should be able to log into the Magento Admin backend."/>
+                <severity value="CRITICAL"/>
+                <testCaseId value="MAGETWO-71572"/>
+            </annotations>
+            <amOnPage url="{{AdminLoginPage}}" mergeKey="amOnPage"/>
+            <fillField selector="{{AdminLoginFormSection.username}}" userInput="{{_ENV.MAGENTO_ADMIN_USERNAME}}" mergeKey="fillField1"/>
+            <fillField selector="{{AdminLoginFormSection.password}}" userInput="{{_ENV.MAGENTO_ADMIN_PASSWORD}}" mergeKey="fillField2"/>
+            <click selector="{{AdminLoginFormSection.signIn}}" mergeKey="clickOnSignIn"/>
+            <seeInCurrentUrl url="{{AdminLoginPage}}" mergeKey="seeInCurrentUrl"/>
+        </test>
+    </cest>
+</config>
